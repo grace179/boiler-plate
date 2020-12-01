@@ -25,6 +25,7 @@ mongoose.connect(config.mongoURI,{
     // 회원가입할때 필요한 정보들을 client에서 가져오면 데이터베이스에 넣어줌
     const user = new User(req.body)
 
+    // 
     user.save((err,userInfo)=>{
       if(err) return res.json({ success: false, err})
       return res.status(200).json({
