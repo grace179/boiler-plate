@@ -71,7 +71,7 @@ mongoose.connect(config.mongoURI,{
   // auth
   app.get('/api/users/auth', auth ,(req, res)=>{
     // auth true 
-    req.status(200).json({
+    res.status(200).json({
       _id: req.user._id,
       isAdmin: req.user.role === 0 ? false : true,
       isAuth: true,
@@ -81,6 +81,18 @@ mongoose.connect(config.mongoURI,{
       role: req.user.role,
       image: req.user.image
     })
+  })
+
+  // logout
+  app.get('/api/users/logout', auth, (req, res)=>{
+    User.findOneAndUpdate({ _id: req.user._id},
+      {token: ""},
+      (err, user)=>{
+        if(err) return res.json({ success: false, err});
+        return res.status(200).send({
+          success: true
+        })
+      })
   })
   
 

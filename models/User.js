@@ -90,7 +90,7 @@ userSchema.statics.findByToken = function( token, cb){
     // 유저 아이디를 이용해서 유저를 찾은 후 토큰 일치하는지 확인
     user.findOne({"_id":decoded, "token": token}, function(err, user){
       if(err) return cb(err);
-      cb(null, err);
+      cb(null, user)
     })
   })
 }

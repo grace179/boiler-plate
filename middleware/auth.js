@@ -1,9 +1,8 @@
-const User = require("../models/User");
+const {User} = require("../models/User");
 
 let auth = (req, res, next) => {
 
   // 인증처리
-
   // 클라이언트 쿠키에서 토큰 가져옴
   let token = req.cookies.x_auth;
 
@@ -14,7 +13,6 @@ let auth = (req, res, next) => {
 
     req.token = token;
     req.user = user;
-
     next();
   })
   // 유저가 있으면 인증 완료
