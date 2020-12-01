@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/key');
 
+const {auth} = require('./middleware/auth');
 // user model 가져오기
 const {User} = require('./models/User');
 
@@ -23,7 +24,7 @@ mongoose.connect(config.mongoURI,{
     res.send('Hello World! 안녕하세요 haha')
   })
 
-  app.post('/register', (req, res) => {
+  app.post('/api/users/register', (req, res) => {
     // 회원가입할때 필요한 정보들을 client에서 가져오면 데이터베이스에 넣어줌
     const user = new User(req.body)
 
@@ -36,7 +37,7 @@ mongoose.connect(config.mongoURI,{
     })
   })
 
-  app.post('/login', (req, res)=>{
+  app.post('/api/users/login', (req, res)=>{
     // 요청된 이메일 데이터베이스에 있는지 찾기
     User.findOne({ email: req.body.email}, (err, user)=>{
       if(!user){
@@ -65,6 +66,21 @@ mongoose.connect(config.mongoURI,{
       })
     })
 
+  })
+
+  // auth
+  app.get('/api/users/auth', auth ,(req, res)=>{
+    // auth true 
+    req.status(200).json({
+      _id: req.user._id,
+      isAdmin: req.user.role === 0 ? false : true,
+      isAuth: true,
+      email: req.user.email,
+      name: req.user.name,
+      lastname: req.user.lastname,
+      role: req.user.role,
+      image: req.user.image
+    })
   })
   
 
