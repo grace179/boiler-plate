@@ -2,10 +2,9 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import LadingPage from './components/views/LandinngPage/LadingPage';
+import LandingPage from './components/views/LandinngPage/LadingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
@@ -16,7 +15,7 @@ function App() {
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
       <Switch>
-        <Route exact path="/" component={LadingPage}/>
+        <Route exact path="/" component={LandingPage}/>
         <Route path="/login" component={LoginPage}/>
         <Route path="/register" component={RegisterPage}/>
       </Switch>

@@ -1,0 +1,15 @@
+.login_input{
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: #eee;
+}
+.login_input:focus{
+  outline: none;
+  border: 1px solid #0066ff;
+
+}
+
+.login_btn{
+  font-weight: 500;
+  cursor: pointer;
+}

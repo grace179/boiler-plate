@@ -1,7 +1,7 @@
-import { response } from 'express';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/action/user_action';
+import './login.css';
 
 function LoginPage(props) {
 
@@ -44,13 +44,15 @@ function LoginPage(props) {
       <form style={{display:"flex", flexDirection:"column"}}
       onSubmit={onSubmitHandler}>
         <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler}/>
+        <input type="email" value={Email} onChange={onEmailHandler}
+        className="login_input"/>
 
         <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler}/>
+        <input type="password" value={Password} onChange={onPasswordHandler}
+        className="login_input"/>
         <br/>
 
-        <button>
+        <button className="login_btn">
           Login
         </button>
       </form>
